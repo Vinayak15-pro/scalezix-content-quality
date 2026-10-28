@@ -3,10 +3,13 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from backend.app.core.config import settings
-from backend.app.api.routes import router as api_router
+try:
+    from backend.app.core.config import settings
+    from backend.app.api.routes import router as api_router
+except ModuleNotFoundError:
+    from app.core.config import settings
+    from app.api.routes import router as api_router
 
-# Configure logging without sensitive credential outputs
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -19,7 +22,7 @@ app = FastAPI(
     description="Production AI Content Quality & Factuality Checker powered by Google Gemini & Deterministic Auditing."
 )
 
-# CORS configuration
+# CORS configuration allowing all origins, credentials, methods, and headers
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

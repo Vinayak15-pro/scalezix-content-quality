@@ -1,13 +1,22 @@
 import re
 import uuid
 from typing import List, Tuple
-from backend.app.models.schemas import (
-    Finding,
-    FindingCategory,
-    PriorityLevel,
-    CheckSource,
-    DeterministicStats
-)
+try:
+    from backend.app.models.schemas import (
+        Finding,
+        FindingCategory,
+        PriorityLevel,
+        CheckSource,
+        DeterministicStats
+    )
+except ModuleNotFoundError:
+    from app.models.schemas import (
+        Finding,
+        FindingCategory,
+        PriorityLevel,
+        CheckSource,
+        DeterministicStats
+    )
 
 WEASEL_PATTERNS = [
     (r"\b(studies (?:show|prove|suggest)|research (?:shows|proves|indicates)|experts (?:agree|say|claim))\b", 
