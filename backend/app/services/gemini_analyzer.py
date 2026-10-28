@@ -6,26 +6,15 @@ from typing import List, Optional, Tuple
 from google import genai
 from google.genai import types
 
-try:
-    from backend.app.core.config import settings
-    from backend.app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        CheckSource,
-        EvidenceStatus,
-        ClaimType
-    )
-except ModuleNotFoundError:
-    from app.core.config import settings
-    from app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        CheckSource,
-        EvidenceStatus,
-        ClaimType
-    )
+from app.core.config import settings
+from app.models.schemas import (
+    Finding,
+    FindingCategory,
+    PriorityLevel,
+    CheckSource,
+    EvidenceStatus,
+    ClaimType
+)
 
 logger = logging.getLogger(__name__)
 

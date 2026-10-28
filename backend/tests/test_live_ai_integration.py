@@ -1,7 +1,7 @@
 import os
 import pytest
-from backend.app.core.config import settings
-from backend.app.services.gemini_analyzer import analyze_with_gemini
+from app.core.config import settings
+from app.services.gemini_analyzer import analyze_with_gemini
 
 @pytest.mark.skipif(
     not settings.GEMINI_API_KEY or os.environ.get("RUN_LIVE_AI_TESTS") != "true",
@@ -26,6 +26,5 @@ def test_live_gemini_integration():
     )
     assert len(findings) > 0
     assert model in ["gemini-3.5-flash", "gemini-3.8-flash"]
-    # Check that at least one finding has evidence status classified
     statuses = [f.evidence_status.value for f in findings]
     assert any("evidence" in s.lower() or "contradict" in s.lower() or "unverified" in s.lower() for s in statuses)

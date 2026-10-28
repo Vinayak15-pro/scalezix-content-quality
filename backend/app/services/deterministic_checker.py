@@ -1,22 +1,13 @@
 import re
 import uuid
 from typing import List, Tuple
-try:
-    from backend.app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        CheckSource,
-        DeterministicStats
-    )
-except ModuleNotFoundError:
-    from app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        CheckSource,
-        DeterministicStats
-    )
+from app.models.schemas import (
+    Finding,
+    FindingCategory,
+    PriorityLevel,
+    CheckSource,
+    DeterministicStats
+)
 
 WEASEL_PATTERNS = [
     (r"\b(studies (?:show|prove|suggest)|research (?:shows|proves|indicates)|experts (?:agree|say|claim))\b", 
@@ -141,7 +132,6 @@ def run_deterministic_analysis(draft_text: str, target_keyword: str = None) -> T
                 ngram_counts[phrase] = ngram_counts.get(phrase, 0) + 1
 
         flagged_phrases = set()
-        # Sort by phrase length descending so 4-grams take precedence over contained 3-grams
         for phrase, count in sorted(ngram_counts.items(), key=lambda x: len(x[0]), reverse=True):
             if count >= 3:
                 if not any(phrase in fp for fp in flagged_phrases):

@@ -1,22 +1,19 @@
 from unittest.mock import patch, MagicMock
-from backend.app.services.gemini_analyzer import (
+from app.services.gemini_analyzer import (
     analyze_with_gemini,
     extract_json_from_response,
     parse_category,
     parse_priority
 )
-from backend.app.models.schemas import FindingCategory, PriorityLevel
+from app.models.schemas import FindingCategory, PriorityLevel
 
 def test_extract_json_from_raw_and_fenced_markdown():
-    # Plain JSON
     raw = '{"findings": [], "executive_summary": "All good"}'
     assert extract_json_from_response(raw)["executive_summary"] == "All good"
 
-    # Markdown fence
     fenced = '```json\n{"findings": [], "executive_summary": "Fenced"}\n```'
     assert extract_json_from_response(fenced)["executive_summary"] == "Fenced"
 
-    # JSON with surrounding prose
     surrounded = 'Here is the audit result:\n{"findings": [], "executive_summary": "Surrounded"}\nHope this helps.'
     assert extract_json_from_response(surrounded)["executive_summary"] == "Surrounded"
 
@@ -44,7 +41,6 @@ def test_gemini_missing_api_key():
 
 @patch("google.genai.Client")
 def test_gemini_api_exception_fallback(mock_client_class):
-    # Mock client throwing exception
     mock_instance = MagicMock()
     mock_instance.models.generate_content.side_effect = Exception("Rate limit or connection error")
     mock_client_class.return_value = mock_instance

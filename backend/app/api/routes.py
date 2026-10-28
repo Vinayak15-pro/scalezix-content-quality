@@ -2,30 +2,17 @@ import datetime
 import logging
 from fastapi import APIRouter, HTTPException, Response
 
-try:
-    from backend.app.core.config import settings
-    from backend.app.models.schemas import (
-        ContentReviewRequest,
-        ContentReviewResponse
-    )
-    from backend.app.services.deterministic_checker import run_deterministic_analysis
-    from backend.app.services.gemini_analyzer import analyze_with_gemini
-    from backend.app.services.report_generator import (
-        calculate_review_summary,
-        generate_markdown_report
-    )
-except ModuleNotFoundError:
-    from app.core.config import settings
-    from app.models.schemas import (
-        ContentReviewRequest,
-        ContentReviewResponse
-    )
-    from app.services.deterministic_checker import run_deterministic_analysis
-    from app.services.gemini_analyzer import analyze_with_gemini
-    from app.services.report_generator import (
-        calculate_review_summary,
-        generate_markdown_report
-    )
+from app.core.config import settings
+from app.models.schemas import (
+    ContentReviewRequest,
+    ContentReviewResponse
+)
+from app.services.deterministic_checker import run_deterministic_analysis
+from app.services.gemini_analyzer import analyze_with_gemini
+from app.services.report_generator import (
+    calculate_review_summary,
+    generate_markdown_report
+)
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

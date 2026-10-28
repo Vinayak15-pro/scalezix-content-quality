@@ -1,7 +1,7 @@
 from unittest.mock import patch
 from fastapi.testclient import TestClient
-from backend.app.main import app
-from backend.app.models.schemas import (
+from app.main import app
+from app.models.schemas import (
     Finding,
     FindingCategory,
     PriorityLevel,
@@ -16,9 +16,8 @@ def test_review_validation_too_short():
     response = client.post("/api/content/review", json={"draft_text": "Too short"})
     assert response.status_code == 422 or response.status_code == 400
 
-@patch("backend.app.api.routes.analyze_with_gemini")
+@patch("app.api.routes.analyze_with_gemini")
 def test_review_endpoint_success(mock_gemini):
-    # Mock Gemini returning 3 structured findings
     mock_ai_findings = [
         Finding(
             id="ai-test-1",
@@ -97,7 +96,6 @@ def test_review_endpoint_success(mock_gemini):
     # Check Findings
     findings = data["findings"]
     assert len(findings) >= 3
-    # Check that both deterministic and AI findings exist
     sources = {f["source"] for f in findings}
     assert "Gemini AI Analysis" in sources
     assert "Deterministic Check" in sources

@@ -1,25 +1,14 @@
 import datetime
 from typing import List, Optional
-try:
-    from backend.app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        EvidenceStatus,
-        DeterministicStats,
-        ReviewSummary,
-        ContentReviewResponse
-    )
-except ModuleNotFoundError:
-    from app.models.schemas import (
-        Finding,
-        FindingCategory,
-        PriorityLevel,
-        EvidenceStatus,
-        DeterministicStats,
-        ReviewSummary,
-        ContentReviewResponse
-    )
+from app.models.schemas import (
+    Finding,
+    FindingCategory,
+    PriorityLevel,
+    EvidenceStatus,
+    DeterministicStats,
+    ReviewSummary,
+    ContentReviewResponse
+)
 
 def calculate_review_summary(
     deterministic_findings: List[Finding],
