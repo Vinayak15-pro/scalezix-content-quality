@@ -1,0 +1,94 @@
+{
+  "status": "success",
+  "summary": {
+    "overall_quality_score": 68,
+    "factuality_score": 58,
+    "total_findings": 5,
+    "high_priority_count": 2,
+    "medium_priority_count": 2,
+    "low_priority_count": 1,
+    "supported_claims_count": 1,
+    "contradicted_claims_count": 1,
+    "unverified_claims_count": 2,
+    "executive_summary": "Draft features high-impact industry metrics but exhibits a severe factual discrepancy in North American payment volume ($45T claimed vs $14.2T verified by Nilson Report). In addition, colloquial terms ('tons of') and repetitive company name openers weaken the institutional authority required for Chief Risk Officers."
+  },
+  "stats": {
+    "word_count": 136,
+    "char_count": 948,
+    "sentence_count": 8,
+    "paragraph_count": 4,
+    "avg_sentence_length_words": 17.0,
+    "reading_time_minutes": 0.7,
+    "flesch_reading_ease": 58.4,
+    "flesch_kincaid_grade": 9.2,
+    "readability_label": "Plain English (Grade 8-9)",
+    "target_keyword_occurrences": 1,
+    "target_keyword_density_percent": 0.74,
+    "repetition_findings_count": 2
+  },
+  "findings": [
+    {
+      "id": "ai-fin-001",
+      "category": "Factuality & Evidence",
+      "priority": "High",
+      "source": "Gemini AI Analysis",
+      "excerpt": "Financial institutions processed over $45 trillion in digital payments across North America last year.",
+      "explanation": "Claim directly clashes with the 2024 Nilson Report benchmark citing $14.2 trillion in total North American payment volume.",
+      "suggested_action": "Update stated figure to '$14.2 trillion' to align with authoritative payment industry benchmarks.",
+      "claim_type": "Statistic / Numerical Claim",
+      "evidence_status": "Potentially contradicted",
+      "evidence_notes": "Nilson Report (2024): Total North American digital and card payment volume was $14.2 trillion."
+    },
+    {
+      "id": "ai-fin-002",
+      "category": "Factuality & Evidence",
+      "priority": "High",
+      "source": "Gemini AI Analysis",
+      "excerpt": "complies fully with the Federal Reserve FedNow ISO 20022 mandate finalized on November 15, 2023.",
+      "explanation": "Date claim conflict: The FedNow ISO 20022 service implementation deadline was March 2023.",
+      "suggested_action": "Verify and align regulatory timeline with the Federal Reserve Financial Services Bulletin.",
+      "claim_type": "Date / Timeline Claim",
+      "evidence_status": "Potentially contradicted",
+      "evidence_notes": "Federal Reserve Bulletin: ISO 20022 deadline was March 2023."
+    },
+    {
+      "id": "det-fin-003",
+      "category": "Vague & Weasel Wording",
+      "priority": "Medium",
+      "source": "Deterministic Check",
+      "excerpt": "...Tons of banks have already replaced their fraud engines...",
+      "explanation": "Informal, vague quantifier ('tons of') violates institutional banking brand voice guidelines.",
+      "suggested_action": "Replace 'Tons of banks' with specific verified counts or enterprise customer tiers (e.g., 'Over 35 regional institutions').",
+      "claim_type": "Not Applicable",
+      "evidence_status": "Not Applicable",
+      "evidence_notes": null
+    },
+    {
+      "id": "det-fin-004",
+      "category": "Repetition & Redundancy",
+      "priority": "Medium",
+      "source": "Deterministic Check",
+      "excerpt": "Multiple consecutive sentences starting with 'FinShield...'",
+      "explanation": "3 consecutive sentences begin with the identical subject 'FinShield', creating a rigid promotional rhythm.",
+      "suggested_action": "Combine into a single unified value proposition or vary grammatical starters.",
+      "claim_type": "Not Applicable",
+      "evidence_status": "Not Applicable",
+      "evidence_notes": null
+    },
+    {
+      "id": "ai-fin-005",
+      "category": "Factuality & Evidence",
+      "priority": "Low",
+      "source": "Gemini AI Analysis",
+      "excerpt": "Our FinShield solution analyzes transactions in under 12 milliseconds.",
+      "explanation": "Claim is supported by benchmark specifications in engineering documentation.",
+      "suggested_action": "Maintain claim; accurately verified by whitepaper benchmarks.",
+      "claim_type": "Performance Metric",
+      "evidence_status": "Supported by supplied evidence",
+      "evidence_notes": "FinShield Whitepaper: Median inference latency benchmark is 11.8 milliseconds."
+    }
+  ],
+  "model_used": "gemini-3.5-flash",
+  "timestamp": "2026-10-28 08:35:00 UTC",
+  "warning_notice": null
+}
